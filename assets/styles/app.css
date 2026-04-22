@@ -3,12 +3,14 @@
 :root {
     --primary-color: black;
     --secondary-color: #f3f3f5;
+    --third-color: #8e94a0;
     --background-color: #f9fafb;
 }
 
 @theme {
     --primary-color: black;
     --secondary-color: #f3f3f5;
+    --third-color: #8e94a0;
     --background-color: #f9fafb;
 }
 
@@ -52,4 +54,10 @@
     border: none;
     cursor: pointer;
     font-weight: bold;
+}
+
+.flex-gap {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
 }
