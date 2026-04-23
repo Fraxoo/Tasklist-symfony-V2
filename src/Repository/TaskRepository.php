@@ -47,6 +47,8 @@ class TaskRepository extends ServiceEntityRepository
 
     public function findForHome(?Folder $folder, ?Status $status, ?Priority $priority): array
     {
+    
+
         $qb = $this->createQueryBuilder('t')
             ->join('t.status', 's')
             ->leftJoin('t.priority', 'p')->addSelect('p')
