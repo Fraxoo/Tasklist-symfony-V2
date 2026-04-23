@@ -3,9 +3,14 @@
 {% block title %}New Folder{% endblock %}
 
 {% block body %}
-    <h1>Create new Folder</h1>
+<div class="form-page">
+    <div class="form-div">
+        <h1>Créer un dossier</h1>
+        <p>Organisez vos tâches par projet</p>
+        {{ include('folder/_form.html.twig') }}
+    </div>
+</div>
 
-    {{ include('folder/_form.html.twig') }}
 
-    <a href="{{ path('app_folder_index') }}">back to list</a>
+<a href="{{ path('app_folder_index') }}">back to list</a>
 {% endblock %}

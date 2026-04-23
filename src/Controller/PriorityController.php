@@ -33,12 +33,13 @@ final class PriorityController extends AbstractController
             $entityManager->persist($priority);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_priority_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('priority/new.html.twig', [
             'priority' => $priority,
             'form' => $form,
+            'priorities' => $entityManager->getRepository(Priority::class)->findAll(),
         ]);
     }
 
@@ -59,12 +60,13 @@ final class PriorityController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_priority_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('priority/edit.html.twig', [
             'priority' => $priority,
             'form' => $form,
+            'priorities' => $entityManager->getRepository(Priority::class)->findAll(),
         ]);
     }
 

@@ -17,7 +17,7 @@ class Task
     private ?string $name = null;
 
     #[ORM\Column]
-    private ?bool $isPinned = null;
+    private ?bool $isPinned = false;
 
     #[ORM\ManyToOne(inversedBy: 'tasks')]
     private ?Priority $priority = null;

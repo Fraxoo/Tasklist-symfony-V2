@@ -1,4 +1,31 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form , {
+    'attr': {'class': 'form-form'}
+}) }}
+<div>
+    <p>Titre de la tache</p>
+    {{ form_widget(form.name , {
+        'attr': {'class': 'form-input'}
+    }) }}
+    {{ form_errors(form.name) }}
+</div>
+<div>
+    <p>Priorité</p>
+    {{ form_widget(form.priority , {
+        'attr': {'class': 'form-input'}
+    }) }}
+    {{ form_errors(form.priority) }}
+</div>
+<div>
+    <p>Dossier (optionnel)</p>
+    {{ form_widget(form.folder , {
+        'attr': {'class': 'form-input'}
+        
+    }) }}
+    {{ form_errors(form.folder) }}
+</div>
+
+<div class="flex justify-end gap-4">
+    <a class="white-btn" href="{{ path('app_home') }}">Annuler</a>
+    <button class="btn black-btn">Créer</button>
+</div>
 {{ form_end(form) }}

@@ -5,44 +5,76 @@
 {% block body %}
 
 <div class="flex w-screen h-screen">
-    <header class="flex flex-col p-4 gap-4 bg-(--background-color) border-r flex-1 border-(--secondary-color)">
+    <header class="flex flex-col p-6 gap-4 bg-(--background-color) border-r flex-1 border-(--secondary-color)">
         <a class="black-btn flex gap-2 items-center px-4 py-2" href="{{ path('app_home')}}">
             <i class="fa-regular fa-house"></i>
             <p>Toutes les taches</p>
         </a>
         <p class="uppercase font-bold text-(--third-color)">Dossier</p>
+        <div>
+            {% for folder in folders %}
+            <div class="flex justify-between">
+                <div class="flex-gap">
+                    <input type="color" name="" class="w-3 h-3 border-0" value="{{folder.color}}" disabled id="">
+                    <i class="fa-regular fa-folder"></i>
+                    <h3 class="">{{folder.name}}</h3>
+                </div>
+                <p class="text-gray-500">{{folder.tasks|length}}</p>
+            </div>
+            {% endfor %}
+        </div>
     </header>
-    <div class="flex flex-5">
-        <div class="flex w-full h-fit p-4 justify-between">
+    <div class="flex flex-col flex-5">
+        <div class="flex w-full h-fit p-6 items-center justify-between">
             <div class="flex flex-col gap-2">
                 <h1 class="text-xl">Gestion de taches</h1>
                 <p>Organisez vos taches efficacement</p>
             </div>
             <div class="flex gap-4">
-                <a href="{{ path('app_priority_new') }}" class="flex-gap">
+                <a href="{{ path('app_priority_new') }}" class="flex-gap ">
                     <i class="fa-solid fa-gear"></i>
                     <p>Gérer les priorités</p>
                 </a>
-                <a href="{{ path('app_folder_new') }}  " class="flex-gap">
+                <a href="{{ path('app_folder_new') }}  " class="flex-gap white-btn">
                     <i class="fa-solid fa-folder-plus"></i>
                     <p>Nouveau dossier</p>
                 </a>
-                <a href="{{ path('app_task_new') }}" class="flex-gap">
+                <a href="{{ path('app_task_new') }}" class="flex-gap black-btn">
                     <i class="fa-solid fa-plus"></i>
                     <p>Nouvelle tache</p>
                 </a>
-                <a href="{{ path('app_logout') }}" class="flex-gap">
+                <a href="{{ path('app_logout') }}" class="flex-gap white-btn">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     <p>Deconnexion</p>
                 </a>
             </div>
         </div>
-        <div>
-
+        <div class="flex p-6 bg-(--background-color) border border-(--secondary-color) gap-4">
+            <div class="flex-gap">
+                <i class="fa-solid fa-filter"></i>
+                <p>Filtres :</p>
+            </div>
+            <div class="flex-gap">
+                <p>Statut</p>
+                <select class="px-4 py-2 bg-(--secondary-color) rounded " name="" id="">
+                    <option value="">En cours</option>
+                    <option value="">Terminé</option>
+                </select>
+            </div>
+            <div class="flex-gap">
+                <p>Priorité</p>
+                <select class="px-4 py-2 bg-(--secondary-color) rounded " name="" id="">
+                    {% for priority in priorities %}
+                    <option value="">{{ priority.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
         </div>
-    </div>
-
-    <div>
+        <div>
+            <pre>
+                {{ dump(tasks) }}
+            </pre>
+        </div>
     </div>
 </div>
 

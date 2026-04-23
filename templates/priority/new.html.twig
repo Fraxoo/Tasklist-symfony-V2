@@ -3,9 +3,12 @@
 {% block title %}New Priority{% endblock %}
 
 {% block body %}
-    <h1>Create new Priority</h1>
-
-    {{ include('priority/_form.html.twig') }}
-
-    <a href="{{ path('app_priority_index') }}">back to list</a>
+<div class="form-page">
+    <div class="form-div">
+        <h1>Gérer les priorités</h1>
+        <p>Ajoutez ou suprimez des niveaux de priorité personnalisés</p>
+    
+        {{ include('priority/_form.html.twig') }}
+    </div>
+</div>
 {% endblock %}

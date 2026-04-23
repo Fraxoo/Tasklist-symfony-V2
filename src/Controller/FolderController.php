@@ -30,10 +30,11 @@ final class FolderController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $folder->setOwner($this->getUser());
             $entityManager->persist($folder);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_folder_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('folder/new.html.twig', [
