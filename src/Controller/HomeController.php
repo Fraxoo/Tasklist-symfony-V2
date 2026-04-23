@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Folder;
 use App\Entity\Priority;
 use App\Entity\Status;
+use App\Entity\Task;
 use App\Repository\TaskRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -39,5 +40,15 @@ final class HomeController extends AbstractController
             'tasks' => $taskRepository->findForHome($folder, $status, $priority),
             'status' => $em->getRepository(Status::class)->findAll()
         ]);
+    }
+
+    public function setStatus(Task $task, Request $request)
+    {
+        // if (!$this->isCsrfTokenValid('task_status' . $task->getId(), (string) $request->request->get('_token'))) {
+        //     throw $this->createAccessDeniedException();
+        // }
+
+        
+
     }
 }

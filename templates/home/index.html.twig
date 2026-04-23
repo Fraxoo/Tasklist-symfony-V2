@@ -6,7 +6,8 @@
 
 <div class="flex w-screen h-screen">
     <header class="flex flex-col p-6 gap-4 bg-(--background-color) border-r flex-1 border-(--secondary-color)">
-        <a class="black-btn flex gap-2 items-center px-4 py-2" href="{{ path('app_home', app.request.query.all|merge({ folder: null })) }}">
+        <a class="black-btn flex gap-2 items-center px-4 py-2"
+            href="{{ path('app_home', app.request.query.all|merge({ folder: null })) }}">
             <i class="fa-regular fa-house"></i>
             <p>Toutes les taches</p>
         </a>
@@ -86,9 +87,9 @@
             </form>
         </div>
         <div>
-            <pre>
-                {{ dump(tasks) }}
-            </pre>
+            {% for task in tasks %}
+                
+            {% endfor %}
         </div>
     </div>
 </div>
