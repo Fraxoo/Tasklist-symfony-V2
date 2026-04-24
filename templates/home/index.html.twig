@@ -86,11 +86,13 @@
                 </div>
             </form>
         </div>
-        <div>
-            {% for task in tasks %}
-                
-            {% endfor %}
+        {% if tasks %}
+        <twig:ListTasks tasks="{{tasks}}" />
+        {% else %}
+        <div class="flex h-full justify-center items-center">
+            <p>Aucune tache pour le moment</p>
         </div>
+        {% endif %}
     </div>
 </div>
 

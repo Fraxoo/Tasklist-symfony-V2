@@ -14,4 +14,8 @@ final class ListTasks
         // inject services here
     ) {}
 
+    public $tasks;
+
+
+
 }

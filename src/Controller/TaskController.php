@@ -73,11 +73,43 @@ final class TaskController extends AbstractController
     #[Route('/{id}', name: 'app_task_delete', methods: ['POST'])]
     public function delete(Request $request, Task $task, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$task->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $task->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($task);
             $entityManager->flush();
         }
 
         return $this->redirectToRoute('app_task_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+
+    #[Route('/isPinned/{id}', name: 'app_task_setPinned', methods: ['POST'])]
+    public function setIsPinned(Request $request, Task $task, EntityManagerInterface $entityManager): Response
+    {
+        if (!$this->isCsrfTokenValid('setPinned' . $task->getId(), (string) $request->request->get('_token'))) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $task->setIsPinned(!$task->isPinned());
+        $entityManager->flush();
+
+        return $this->redirect($request->headers->get('referer') ?? $this->generateUrl('app_home'));
+    }
+
+    #[Route('/setIsDone/{id}', name: 'app_task_setIsDone', methods: ['POST'])]
+    public function setIsDone(Request $request, Task $task, EntityManagerInterface $entityManager): Response
+    {
+        if (!$this->isCsrfTokenValid('setIsDone' . $task->getId(), (string) $request->request->get('_token'))) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $statusId = $task->getStatus()->getId();
+        $futurStatus = $statusId == 1 ? 2 : 1;
+        $status = $entityManager->getRepository(Status::class)->find($futurStatus);
+
+
+        $task->setStatus($status);
+        $entityManager->flush();
+
+        return $this->redirect($request->headers->get('referer') ?? $this->generateUrl('app_home'));
     }
 }

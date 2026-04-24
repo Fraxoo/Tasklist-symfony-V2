@@ -1,3 +1,29 @@
-<div{{ attributes }}>
-    <!-- component HTML -->
-</div>
+<div{{ attributes }} class="p-6 flex flex-col gap-8 md:px-40">
+    
+    {% for task in tasks %}
+    <div class="flex justify-between items-center border border-(--secondary-color) rounded-2xl px-8 py-4">
+        <div class="flex items-center gap-4">
+            <form method="post" action="{{path('app_task_setIsDone' , {id: task.id})}}">
+                <input type="hidden" name="_token" value="{{ csrf_token('setIsDone' ~ task.id) }}">
+                <input value="{{ task.status.name == " Terminé" ? 2 : 1 }}" onchange="this.form.submit()"
+                    type="checkbox" {% if task.status.name=="Terminé" %} checked {% endif %}>
+            </form>
+            <div class="flex flex-col ">
+                <p>{{task.name}}</p>
+                <p class="text-(--third-color)">{{task.status.name}}</p>
+            </div>
+            <p class="px-2 py-1 bg-blue-200 border border-blue-300 rounded-2xl text-xs">{{task.priority.name}}</p>
+        </div>
+        <form method="post" action="{{ path('app_task_setPinned', { id: task.id }) }}">
+            <input type="hidden" name="_token" value="{{ csrf_token('setPinned' ~ task.id) }}">
+            <button type="submit">
+                {% if task.isPinned %}
+                <i class="fa-solid fa-thumbtack-slash"></i>
+                {% else %}
+                <i class="fa-solid fa-thumbtack"></i>
+                {% endif %}
+            </button>
+        </form>
+    </div>
+    {% endfor %}
+    </div>
