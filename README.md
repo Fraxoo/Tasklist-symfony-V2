@@ -20,11 +20,8 @@ Petit projet **TaskList** développé avec Symfony afin de m’entraîner sur le
 ## Fonctionnalités
 
 - Création, modification et suppression de tâches
-- Gestion des statuts (à faire / en cours / terminé)
+- Gestion des statuts (en cours / terminé)
 - Filtrage des tâches
-- Organisation par catégories ou priorités (si présent dans ton projet)
-- Interface responsive avec Tailwind CSS
-- Système de fixtures pour générer des données de test
 
 ---
 
