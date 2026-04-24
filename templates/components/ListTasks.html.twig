@@ -5,7 +5,7 @@
         <div class="flex items-center gap-4">
             <form method="post" action="{{path('app_task_setIsDone' , {id: task.id})}}">
                 <input type="hidden" name="_token" value="{{ csrf_token('setIsDone' ~ task.id) }}">
-                <input value="{{ task.status.name == " Terminé" ? 2 : 1 }}" onchange="this.form.submit()"
+                <input value="{{ task.status.name == " Terminé" ? 2 : 1 }}" onchange="this.form.requestSubmit()"
                     type="checkbox" {% if task.status.name=="Terminé" %} checked {% endif %}>
             </form>
             <div class="flex flex-col ">
