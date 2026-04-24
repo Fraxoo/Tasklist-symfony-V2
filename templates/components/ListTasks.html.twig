@@ -9,7 +9,7 @@
                     type="checkbox" {% if task.status.name=="Terminé" %} checked {% endif %}>
             </form>
             <div class="flex flex-col ">
-                <p>{{task.name}}</p>
+                <p class="{{ task.status.id == 1 ? "line-through" : null }}">{{task.name}}</p>
                 <p class="text-(--third-color)">{{task.status.name}}</p>
             </div>
             <p class="px-2 py-1 bg-blue-200 border border-blue-300 rounded-2xl text-xs">{{task.priority.name}}</p>
