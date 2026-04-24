@@ -41,8 +41,8 @@ Petit projet **TaskList** développé avec Symfony afin de m’entraîner sur le
 Cloner le projet :
 
 ```bash
-git clone https://github.com/Fraxoo/tasklist-symfony.git
-cd tasklist-symfony
+git clone https://github.com/Fraxoo/phase3-symfony-tasklist-reloaded.git
+cd phase3-symfony-tasklist-reloaded
 ```
 
 Installer les dépendances PHP :
