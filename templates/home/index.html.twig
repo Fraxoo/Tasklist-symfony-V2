@@ -73,7 +73,7 @@
 
                 <div class="flex-gap">
                     <p>Priorité :</p>
-                    <select class="bg-(--secondary-color) px-4 py-1" name="priority" onchange="this.form.submit()">
+                    <select class="bg-(--secondary-color) px-4 py-1 rounded" name="priority" onchange="this.form.submit()">
                         <option value="">Toutes</option>
                         {% for priority in priorities %}
                         <option value="{{ priority.id }}" {% if app.request.query.get('priority')==priority.id
